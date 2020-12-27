@@ -50,13 +50,13 @@ public class ReadExcel {
                 value = cell.getStringCellValue();
                 break;
             case BLANK:
-                value = "";
+                value = ""; //空字符串
                 break;
             case BOOLEAN:
                 value = cell.getBooleanCellValue() + "";
                 break;
             case NUMERIC:
-                value = cell.getNumericCellValue() + "";
+                value = cell.getNumericCellValue() + "";//double和一个空字符串相连接，最终得到字符串
                 break;
             case FORMULA:
                 value = cell.getCellFormula();
