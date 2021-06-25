@@ -9,6 +9,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class ReadExcel {
+    /*
+    ReadExcel是一个什么方法？成员方法
+     */
     public User[] readExcel(File file) {
         User users[] = null;
         try {
