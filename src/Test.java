@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -23,12 +22,12 @@ public class Test {
             //File file=new File("C:\\Users\\Lenovo\\IdeaProjects\\CmdShop\\src\\users.xlsx");//users.xlsx右键copy path粘贴到此处
 
             InputStream in = Class.forName("Test").getResourceAsStream("/users.xlsx");
-            ReadExcel readExcel = new ReadExcel();//创建对象
+            ReadUserExcel readExcel = new ReadUserExcel();//创建对象
             User users[] = readExcel.readExcel(in);
             System.out.println("从数据库中拿到的密码：" + users[0].getPassword());
 
             for (int i = 0; i < users.length; i++) {
-                if (username.equals(users[i].getUsername()) && password.equals(users[i].getPassword())) {
+                if (username.equals(users[i].getUsername().trim()) && password.equals(users[i].getPassword().trim())) {
                     System.out.println("登录成功");
                     bool=false;
                     break;

@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 
-public class ReadExcel {
+public class ReadUserExcel {
     /*
     ReadExcel是一个什么方法？成员方法
      */
@@ -48,7 +48,7 @@ public class ReadExcel {
 
     private String getValue(XSSFCell cell) {
         String value;
-        CellType type = cell.getCellTypeEnum();
+        CellType type = cell.getCellType();
 
         switch (type) {
             case STRING:
