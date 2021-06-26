@@ -7,15 +7,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.DecimalFormat;
 
 public class ReadExcel {
     /*
     ReadExcel是一个什么方法？成员方法
      */
-    public User[] readExcel(File file) {
+    public User[] readExcel(InputStream in) {
         User users[] = null;
         try {
-            XSSFWorkbook xw = new XSSFWorkbook(new FileInputStream(file));
+            XSSFWorkbook xw = new XSSFWorkbook(in);
             XSSFSheet xs = xw.getSheetAt(0);
             users = new User[xs.getLastRowNum()];
             for (int j = 1; j <= xs.getLastRowNum(); j++) {
@@ -59,7 +61,15 @@ public class ReadExcel {
                 value = cell.getBooleanCellValue() + "";
                 break;
             case NUMERIC:
-                value = cell.getNumericCellValue() + "";//double和一个空字符串相连接，最终得到字符串
+                DecimalFormat df = new DecimalFormat("#");
+                value=df.format(cell.getNumericCellValue());
+
+               /* value = cell.getNumericCellValue() + "";//double和一个空字符串相连接，最终得到字符串
+                int index=value.lastIndexOf(".");
+                value=value.substring(0,index);//将字符串后的.0去掉
+                */
+
+                System.out.println("处理后的："+value);
                 break;
             case FORMULA:
                 value = cell.getCellFormula();
